@@ -1,10 +1,10 @@
-import { getRepository } from 'typeorm';
+import { FindOptionsWhere, ObjectLiteral, getRepository } from 'typeorm';
 import { SubFactory } from './subfactory';
 import { Constructable } from './types';
 import { Sequence } from './sequence';
 import { FactoryStorage } from './factory-storage';
 
-export abstract class Factory<T> {
+export abstract class Factory<T extends ObjectLiteral> {
   abstract get entity(): Constructable<T>;
 
   constructor() {}
@@ -39,14 +39,14 @@ export abstract class Factory<T> {
     return [];
   }
 
-  private async getExistingEntity(values: Partial<T>) {
-    const whereClauses: { [key: string]: any } = {};
+  private async getExistingEntity(values: Partial<T>): Promise<T | null> {
+    const whereClauses: any = {};
 
     this.getOrCreate().forEach((key) => {
       whereClauses[key] = values[key as keyof T] ? values[key as keyof T] : (this as any)[key];
     });
 
-    return getRepository(this.entity).findOne({ where: whereClauses });
+    return getRepository(this.entity).findOneBy(whereClauses);
   }
 
   private async createEntity(values: Partial<T>): Promise<T> {
