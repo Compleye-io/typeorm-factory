@@ -1,5 +1,5 @@
 {
-  "name": "@linnify/typeorm-factory",
+  "name": "@compleye-io/typeorm-factory",
   "version": "1.0.12",
   "description": "Factory for typeorm",
   "main": "lib/index.js",
@@ -19,7 +19,7 @@
   "author": "Bogdan Darius",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/linnify/typeorm-factory.git"
+    "url": "https://github.com/Compleye-io/typeorm-factory.git"
   },
   "keywords": [
     "typeorm",
@@ -29,7 +29,7 @@
     "factories",
     "tests"
   ],
-  "homepage": "https://github.com/linnify/typeorm-factory#readme",
+  "homepage": "https://github.com/Compleye-io/typeorm-factory#readme",
   "license": "ISC",
   "peerDependencies": {
     "typeorm": "^0.3.17"
